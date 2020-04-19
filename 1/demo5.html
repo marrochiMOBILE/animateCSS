@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="animate2.css">
+    <title>Document</title>
+</head>
+<body>
+       <center>
+            <br>
+            <br>
+            <h1 class="my-element my-callback">
+                ini menggunakan gabungan dengan js yang sederhana
+            </h1>
+       </center>
+
+       <script>    
+        function animateCSS(element, animationName, infinite, callback) {
+            const node = document.querySelector(element)
+            node.classList.add('animated', animationName, infinite)
+
+            function handleAnimationEnd() {
+                node.classList.remove('animated', animationName, infinite)
+                node.removeEventListener('click', handleAnimationEnd)
+
+                if (typeof callback === 'function') callback()
+            }
+                
+            
+            node.addEventListener('click', handleAnimationEnd)
+        }
+
+        animateCSS('.my-element', 'bounce' ,'infinite', function() {
+            
+            const node2 = document.querySelector('.my-element')
+
+            function handleAnimationEnd2() {
+                node2.classList.add('animated', 'bounce', 'infinite')
+                node2.removeEventListener('dblclick', handleAnimationEnd2)
+
+                if (typeof callback === 'function') callback()
+            }
+                
+            
+            node2.addEventListener('dblclick', handleAnimationEnd2)
+           
+        })
+       </script>
+</body>
+</html>
